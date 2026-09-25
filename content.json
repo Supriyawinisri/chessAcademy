@@ -1,0 +1,91 @@
+{
+  "academy": {
+    "name": "Little Shishyas Chess Academy",
+    "brandLines": [
+      "Little Shishyas",
+      "Chess Academy"
+    ],
+    "address": [
+      "Little Shishyas Play School",
+      "HIG-1.36, Third Main Road",
+      "Nolambur, Mogappair West",
+      "Chennai, Tamil Nadu 600037"
+    ]
+  },
+  "hero": {
+    "tagline": "Learn · Play · Grow",
+    "headline": "Small steps.",
+    "emphasis": "Big thinkers.",
+    "description": "Offline chess coaching for ages 4+ in Nolambur, Chennai, and online classes for ages 7+. Build focus, confidence and a lifelong love of learning, one move at a time.",
+    "enquiryLabel": "Enquire on WhatsApp",
+    "coursesLabel": "Explore courses"
+  },
+  "navigation": {
+    "whyChess": "Why chess",
+    "courses": "Courses",
+    "classes": "Classes",
+    "contact": "Contact",
+    "accessibleLabel": "Main navigation"
+  },
+  "whyChess": {
+    "heading": "Every child deserves a head start.",
+    "introduction": "From the first lesson to tournament play, we guide and support children as they learn to think ahead and grow through the game.",
+    "benefits": [
+      "Better thinking",
+      "Focus & concentration",
+      "Patience & discipline",
+      "Confidence",
+      "Problem solving"
+    ]
+  },
+  "courses": {
+    "heading": "Find the right starting point.",
+    "introduction": "Choose a level that matches your child's experience. Contact us for placement and enrollment details.",
+    "levels": [
+      "Beginner",
+      "Intermediate",
+      "Advanced"
+    ]
+  },
+  "classes": {
+    "heading": "Learn your way.",
+    "introduction": "Choose the class format that suits your child. View the matching poster for enrollment details.",
+    "features": [
+      "Structured curriculum",
+      "Small batches",
+      "Personal attention",
+      "Tournaments & progress tracking"
+    ],
+    "offline": {
+      "title": "Offline classes",
+      "posterLabel": "View Offline Class Poster",
+      "description": "For ages 4 and above · Nolambur, Chennai",
+      "schedule": "Monday, Wednesday, Friday. Contact us for timings and available batches."
+    },
+    "online": {
+      "title": "Online classes",
+      "posterLabel": "View Online Class Poster",
+      "description": "For ages 7 and above · Learn from home",
+      "schedule": "Contact us for the online class schedule and available batches."
+    },
+    "posterNewTabLabel": "(opens in a new tab)"
+  },
+  "contact": {
+    "visitLabel": "Visit us",
+    "contactLabel": "Get in touch",
+    "heading": "Ready to make a move?",
+    "phones": [
+      "+91 95662 52618",
+      "+91 93847 80707"
+    ],
+    "whatsappMessage": "Hello, I'd like to enquire about chess classes.",
+    "whatsappLabel": "Message on WhatsApp"
+  },
+  "footer": {
+    "backToTop": "Back to top ↑"
+  },
+  "page": {
+    "title": "Little Shishyas Chess Academy | Chess classes in Nolambur, Chennai",
+    "description": "Offline chess coaching for ages 4+ in Nolambur, Chennai, and online classes for ages 7+. Build focus, confidence and a lifelong love of learning, one move at a time."
+  }
+}
