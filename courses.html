@@ -64,7 +64,9 @@
     .batch-row { display: grid; grid-template-columns: minmax(140px, .7fr) minmax(0, 1.4fr) auto; align-items: center; gap: 16px; padding: 18px 12px; color: #17201b; }
     .batch-name { font-weight: 700; }
     .batch-sessions { color: #4b554e; line-height: 1.6; }
-    .batch-amount { font-weight: 700; white-space: nowrap; }
+    .batch-amount, .fee-value { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 7px 12px; border: 1px solid #c59942; border-radius: 4px; background: #f3ead0; color: #62430f; font-weight: 800; white-space: nowrap; }
+    .fee-highlight { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 18px 0 8px; font-weight: 700; }
+    .fee-note { color: #596158; font-size: .92rem; line-height: 1.6; }
     .schedule-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .reveal { animation: enter .24s ease-out both; }
     @keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -254,7 +256,19 @@
             const schedule = document.createElement('p');
             schedule.className = 'schedule-description';
             schedule.textContent = mode.schedule;
-            scheduleDetails.append(schedule);
+            const fee = mode.fees.find(item => item.level === selectedLevel);
+            const feeLine = document.createElement('div');
+            feeLine.className = 'fee-highlight';
+            const feeLabel = document.createElement('span');
+            feeLabel.textContent = selectedLevel + ' fee';
+            const feeAmount = document.createElement('strong');
+            feeAmount.className = 'fee-value';
+            feeAmount.textContent = fee.amount;
+            feeLine.append(feeLabel, feeAmount);
+            const feeNote = document.createElement('p');
+            feeNote.className = 'fee-note';
+            feeNote.textContent = mode.feeNote;
+            scheduleDetails.append(schedule, feeLine, feeNote);
           }
 
           reveal(schedulePanel);

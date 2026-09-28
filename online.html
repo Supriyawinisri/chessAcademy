@@ -17,41 +17,61 @@
     .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .brand { color: #f4d280; font: bold 1.1rem Georgia, serif; text-decoration: none; }
     .back { color: #f6e5b8; text-decoration: none; }
-    main { padding: 56px 0 72px; }
-    .detail { display: grid; grid-template-columns: 1fr minmax(280px, .8fr); gap: 56px; align-items: center; }
-    .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
+    main { padding-bottom: 64px; }
+    .online-hero { padding: 54px 0 58px; background: radial-gradient(circle at 78% 40%, #354237 0, #101715 48%); color: #fff; }
+    .detail { display: grid; grid-template-columns: 1fr minmax(280px, .72fr); gap: 64px; align-items: center; }
+    .eyebrow { color: #eac46e; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
     h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
     h1 { margin: 12px 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; }
-    .description { color: #4b554e; line-height: 1.7; }
+    .description { max-width: 540px; color: #e4e8e2; font-size: 1.08rem; line-height: 1.7; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; }
-    .btn-secondary { background: transparent; color: #16211b; }
-    figure { margin: 0; padding: 10px; background: #fff; border: 1px solid #d9d6ca; }
-    figure img { display: block; width: 100%; height: auto; }
+    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; transition: transform .18s ease, background-color .18s ease; }
+    .btn:hover { transform: translateY(-2px); background: #304236; }
+    .btn-primary { border-color: #eec874; background: #eec874; color: #18211b; }
+    .btn-primary:hover { background: #f4d990; }
+    .btn-secondary { border-color: #bba566; background: transparent; color: #f6e5b8; }
+    figure { width: min(100%, 370px); justify-self: end; margin: 0; }
+    figure img { display: block; width: 100%; height: auto; border: 8px solid #e3c16f; box-shadow: 18px 24px 45px #0006; }
     figure a { display: block; }
-    figcaption { padding: 12px 4px 2px; color: #4b554e; font-size: .9rem; }
-    .features { margin-top: 64px; padding-top: 32px; border-top: 1px solid #d9d6ca; }
+    figcaption { padding: 12px 4px 2px; color: #f2e6c5; font-size: .9rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 34px; border-top: 1px solid #ffffff30; }
+    .fact { padding: 18px 16px 0 0; }
+    .fact + .fact { padding-left: 18px; border-left: 1px solid #ffffff30; }
+    .fact-label { display: block; margin-bottom: 6px; color: #eac46e; font-size: .76rem; font-weight: 700; text-transform: uppercase; }
+    .fact-value { color: #fff; font-weight: 700; line-height: 1.45; }
+    .next-step { margin-top: 54px; padding: 28px; border: 1px solid #d9d6ca; background: #eae9df; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+    .next-step h2 { margin: 8px 0; font-size: 1.8rem; }
+    .next-step p { max-width: 650px; margin: 0; color: #4b554e; line-height: 1.65; }
+    .next-step .eyebrow { color: #8d651a; }
+    .features { margin-top: 54px; }
     h2 { margin: 0 0 20px; font-size: 2rem; }
-    .feature-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .feature { padding-top: 14px; border-top: 3px solid #c59942; font-weight: 700; line-height: 1.5; }
-    .contact { margin-top: 54px; padding: 24px 0; border-top: 1px solid #d9d6ca; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+    .feature-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .feature { min-height: 120px; padding: 18px; border: 1px solid #d9d6ca; border-top: 3px solid #c59942; background: #fff; font-weight: 700; line-height: 1.5; }
+    .contact { margin-top: 48px; padding: 24px 0; border-top: 1px solid #d9d6ca; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
     .contact a { color: #745118; font-weight: 700; text-decoration: none; }
     .footer { padding: 22px 0; background: #101715; color: #e1e4dc; }
     .footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .footer a { color: #f4d280; }
     @media (max-width: 700px) {
       .nav { min-height: 64px; }
-      main { padding: 36px 0 48px; }
+      .online-hero { padding: 36px 0 42px; }
       .detail { grid-template-columns: 1fr; gap: 34px; }
+      figure { justify-self: center; width: min(100%, 330px); }
+      .quick-facts { margin-top: 26px; }
       .feature-list { grid-template-columns: repeat(2, 1fr); }
-      .features { margin-top: 44px; }
+      .next-step, .features { margin-top: 42px; }
     }
     @media (max-width: 420px) {
       .wrap { width: min(100% - 32px, 1100px); }
       .actions { flex-direction: column; }
       .btn { width: 100%; }
       .feature-list { grid-template-columns: 1fr; }
+      .fact { padding-right: 8px; }
+      .fact + .fact { padding-left: 10px; }
+      .fact-value { font-size: .9rem; }
+      .next-step { padding: 20px; }
     }
+    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
   </style>
 </head>
 <body>
@@ -61,32 +81,51 @@
       <a class="back" href="courses.html">Back to courses</a>
     </div>
   </header>
-  <main class="wrap">
-    <section class="detail" aria-labelledby="class-title">
-      <div>
-        <div class="eyebrow">Live coaching · Learn from home</div>
-        <h1 id="class-title">Online classes</h1>
-        <p class="description" id="class-description">Chess coaching for children learning from home.</p>
-        <div class="actions">
-          <a class="btn" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
-          <a class="btn btn-secondary" href="courses.html">Browse course schedules</a>
+  <main>
+    <section class="online-hero" aria-labelledby="class-title">
+      <div class="wrap">
+        <div class="detail">
+          <div>
+            <div class="eyebrow">Live coaching · Learn from home</div>
+            <h1 id="class-title">Online classes</h1>
+            <p class="description" id="class-description">Chess coaching for children learning from home.</p>
+            <div class="actions">
+              <a class="btn btn-primary" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+              <a class="btn btn-secondary" href="courses.html">View schedules and amounts</a>
+            </div>
+            <div class="quick-facts" aria-label="Online class details">
+              <div class="fact"><span class="fact-label">Eligibility</span><span class="fact-value" id="age-fact">For ages 7 and above</span></div>
+              <div class="fact"><span class="fact-label">Batch choices</span><span class="fact-value" id="batch-count"></span></div>
+              <div class="fact"><span class="fact-label">Study from</span><span class="fact-value">Home, anywhere</span></div>
+            </div>
+          </div>
+          <figure>
+            <a id="poster-link" href="online-poster.jpg" target="_blank" rel="noopener noreferrer">
+              <img id="poster" src="online-poster.jpg" alt="Online chess class poster">
+            </a>
+            <figcaption>Open the poster for enrollment information.</figcaption>
+          </figure>
         </div>
       </div>
-      <figure>
-        <a id="poster-link" href="online-poster.jpg" target="_blank" rel="noopener noreferrer">
-          <img id="poster" src="online-poster.jpg" alt="Online chess class poster">
-        </a>
-        <figcaption>Class information and enrollment details</figcaption>
-      </figure>
     </section>
-    <section class="features" aria-labelledby="features-title">
-      <h2 id="features-title">Coaching that grows with your child</h2>
-      <div class="feature-list" id="feature-list"></div>
-    </section>
-    <section class="contact" aria-label="Contact information">
-      <strong id="academy-name">Little Shishyas Chess Academy</strong>
-      <div id="phone-list"></div>
-    </section>
+    <div class="wrap">
+      <section class="next-step" aria-labelledby="next-step-title">
+        <div>
+          <div class="eyebrow">Find your batch</div>
+          <h2 id="next-step-title">Compare levels, times and amounts.</h2>
+          <p>Browse the course options, then message us if you would like help choosing a level or batch.</p>
+        </div>
+        <a class="btn" href="courses.html">Browse online schedules</a>
+      </section>
+      <section class="features" aria-labelledby="features-title">
+        <h2 id="features-title">A thoughtful approach to coaching</h2>
+        <div class="feature-list" id="feature-list"></div>
+      </section>
+      <section class="contact" aria-label="Contact information">
+        <strong id="academy-name">Little Shishyas Chess Academy</strong>
+        <div id="phone-list"></div>
+      </section>
+    </div>
   </main>
   <footer class="footer"><div class="wrap"><span>Little Shishyas Chess Academy</span><a href="index.html">Home</a></div></footer>
   <script>
@@ -104,6 +143,8 @@
         document.querySelector('#academy-name').textContent = settings.academy.name;
         document.querySelector('#class-title').textContent = mode.title;
         document.querySelector('#class-description').textContent = mode.description;
+        document.querySelector('#age-fact').textContent = mode.description.split('·')[0].trim();
+        document.querySelector('#batch-count').textContent = mode.batches.length + ' weekly batches';
         document.querySelector('#poster').src = posterFile;
         document.querySelector('#poster-link').href = posterFile;
         document.querySelector('#poster').alt = mode.title + ' poster';

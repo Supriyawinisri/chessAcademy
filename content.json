@@ -91,7 +91,13 @@
       "title": "Offline classes",
       "buttonLabel": "Explore offline classes",
       "description": "For ages 4 and above · In-person coaching",
-      "schedule": "Monday, Wednesday, Friday. Contact us for timings and available batches."
+      "schedule": "Monday, Wednesday, Friday. Contact us for timings and available batches.",
+      "fees": [
+        { "level": "Beginner", "amount": "Rs. 1,500" },
+        { "level": "Intermediate", "amount": "Rs. 2,000" },
+        { "level": "Advanced", "amount": "Rs. 3,000" }
+      ],
+      "feeNote": "Additional charges apply in the first month. Please contact us for details."
     },
     "online": {
       "title": "Online classes",

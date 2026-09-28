@@ -10,7 +10,7 @@ Edit **content.json** in VS Code. You do not need to change `index.html` for rou
 - `whyChess`: heading, introduction, benefit titles and descriptions, and the Courses link label.
 - `faq`: homepage FAQ heading, introduction and expandable question/answer entries.
 - `courses`: heading, introduction, course names and matching level descriptions, displayed on the separate `courses.html` page. No course fees are displayed.
-- `classes.offline` and `classes.online`: class titles, descriptions, schedules and Courses-page button labels. `classes.online.batches` holds each batch's sessions and amount.
+- `classes.offline` and `classes.online`: class titles, descriptions, schedules and Courses-page button labels. `classes.offline.fees` lists offline fees by level, and `feeNote` explains first-month additional charges. `classes.online.batches` holds each batch's sessions and amount.
 - `classes.features`: coaching features.
 - `contact`: phone numbers, WhatsApp destination and message, directions button label, and contact labels.
 - `footer`: the back-to-top label.
