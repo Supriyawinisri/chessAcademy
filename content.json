@@ -16,14 +16,14 @@
     "tagline": "Learn · Play · Grow",
     "headline": "Small steps.",
     "emphasis": "Big thinkers.",
-    "description": "Offline chess coaching for ages 4+ in Nolambur, Chennai, and online classes for ages 7+. Build focus, confidence and a lifelong love of learning, one move at a time.",
+    "description": "Build focus, confidence and a lifelong love of learning, one move at a time at Little Shishyas Chess Academy.",
     "enquiryLabel": "Enquire on WhatsApp",
     "coursesLabel": "Explore courses"
   },
   "navigation": {
     "whyChess": "Why chess",
     "courses": "Courses",
-    "classes": "Classes",
+    "questions": "FAQs",
     "contact": "Contact",
     "accessibleLabel": "Main navigation"
   },
@@ -36,6 +36,32 @@
       "Patience & discipline",
       "Confidence",
       "Problem solving"
+    ],
+    "benefitDescriptions": [
+      "Compare choices, notice patterns and think one move ahead.",
+      "Practice staying attentive as each position changes.",
+      "Take time to weigh options and follow a plan.",
+      "Learn from each game and grow comfortable making decisions.",
+      "Break a challenging position into smaller questions and test ideas."
+    ],
+    "coursesLinkLabel": "Explore course levels"
+  },
+  "faq": {
+    "heading": "A few helpful answers.",
+    "introduction": "Have a question before getting started? Here are a few useful details.",
+    "items": [
+      {
+        "question": "How do I choose the right course level?",
+        "answer": "Explore the Beginner, Intermediate and Advanced levels on the Courses page. Message us for placement guidance."
+      },
+      {
+        "question": "How can I ask about enrollment?",
+        "answer": "Send us a message on WhatsApp and we can help with placement and enrollment details."
+      },
+      {
+        "question": "Where is the academy located?",
+        "answer": "Little Shishyas Play School, HIG-1.36, Third Main Road, Nolambur, Mogappair West, Chennai, Tamil Nadu 600037."
+      }
     ]
   },
   "courses": {
@@ -45,11 +71,16 @@
       "Beginner",
       "Intermediate",
       "Advanced"
+    ],
+    "levelDescriptions": [
+      "Learn piece movement, board rules, check and checkmate, and how to spot simple threats.",
+      "Build tactical awareness, opening principles, and the habit of planning ahead.",
+      "Sharpen calculation, positional planning, and endgame technique with challenging positions."
     ]
   },
   "classes": {
     "heading": "Learn your way.",
-    "introduction": "Choose the class format that suits your child. View the matching poster for enrollment details.",
+    "introduction": "Choose the class format that suits your child. Open a class page for schedule and enrollment details.",
     "features": [
       "Structured curriculum",
       "Small batches",
@@ -58,15 +89,71 @@
     ],
     "offline": {
       "title": "Offline classes",
-      "posterLabel": "View Offline Class Poster",
+      "buttonLabel": "Explore offline classes",
       "description": "For ages 4 and above · Nolambur, Chennai",
       "schedule": "Monday, Wednesday, Friday. Contact us for timings and available batches."
     },
     "online": {
       "title": "Online classes",
-      "posterLabel": "View Online Class Poster",
+      "buttonLabel": "Explore online classes",
       "description": "For ages 7 and above · Learn from home",
-      "schedule": "Contact us for the online class schedule and available batches."
+      "schedule": "Choose from six weekly batches. See the session schedules and amounts below.",
+      "batches": [
+        {
+          "name": "Beginner Batch 1",
+          "level": "Beginner",
+          "sessions": [
+            { "day": "Tuesday", "time": "8:00 PM - 9:00 PM" },
+            { "day": "Thursday", "time": "8:00 PM - 9:00 PM" }
+          ],
+          "amount": "Rs. 2,000"
+        },
+        {
+          "name": "Beginner Batch 2",
+          "level": "Beginner",
+          "sessions": [
+            { "day": "Wednesday", "time": "6:00 PM - 7:00 PM" },
+            { "day": "Friday", "time": "6:00 PM - 7:00 PM" }
+          ],
+          "amount": "Rs. 2,000"
+        },
+        {
+          "name": "Intermediate Batch 1",
+          "level": "Intermediate",
+          "sessions": [
+            { "day": "Tuesday", "time": "8:00 PM - 9:00 PM" },
+            { "day": "Thursday", "time": "8:00 PM - 9:00 PM" }
+          ],
+          "amount": "Rs. 2,500"
+        },
+        {
+          "name": "Intermediate Batch 2",
+          "level": "Intermediate",
+          "sessions": [
+            { "day": "Monday", "time": "7:30 PM - 8:30 PM" },
+            { "day": "Wednesday", "time": "7:30 PM - 8:30 PM" }
+          ],
+          "amount": "Rs. 2,500"
+        },
+        {
+          "name": "Advanced Batch 1",
+          "level": "Advanced",
+          "sessions": [
+            { "day": "Wednesday", "time": "8:30 PM - 9:30 PM" },
+            { "day": "Saturday", "time": "10:30 AM - 11:30 AM" }
+          ],
+          "amount": "Rs. 3,000"
+        },
+        {
+          "name": "Advanced Batch 2",
+          "level": "Advanced",
+          "sessions": [
+            { "day": "Monday", "time": "8:30 PM - 9:30 PM" },
+            { "day": "Friday", "time": "8:30 PM - 9:30 PM" }
+          ],
+          "amount": "Rs. 3,000"
+        }
+      ]
     },
     "posterNewTabLabel": "(opens in a new tab)"
   },
@@ -78,6 +165,7 @@
       "+91 95662 52618",
       "+91 93847 80707"
     ],
+    "whatsappNumber": "919566252618",
     "whatsappMessage": "Hello, I'd like to enquire about chess classes.",
     "whatsappLabel": "Message on WhatsApp"
   },
@@ -86,6 +174,6 @@
   },
   "page": {
     "title": "Little Shishyas Chess Academy | Chess classes in Nolambur, Chennai",
-    "description": "Offline chess coaching for ages 4+ in Nolambur, Chennai, and online classes for ages 7+. Build focus, confidence and a lifelong love of learning, one move at a time."
+    "description": "Build focus, confidence and a lifelong love of learning, one move at a time at Little Shishyas Chess Academy."
   }
 }
