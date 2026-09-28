@@ -650,6 +650,7 @@
                     <div class="kicker"></div>
                     <h2></h2>
                     <address></address>
+                    <p><a class="btn btn-outline" id="directions-link" target="_blank" rel="noopener noreferrer"></a></p>
                 </div>
                 <div>
                     <div class="kicker"></div>
@@ -724,6 +725,9 @@
   text('#contact .contact-grid > div:first-child .kicker', contact.visitLabel);
   text('#contact .contact-grid > div:first-child h2', academy.name);
   lines('#contact address', academy.address);
+    const directionsLink = find('#directions-link');
+    directionsLink.href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(academy.address.join(', '));
+    directionsLink.textContent = contact.directionsLabel;
   text('#contact .contact-grid > div:last-child .kicker', contact.contactLabel);
   text('#contact .contact-grid > div:last-child h2', contact.heading);
   document.querySelectorAll('#contact .phone').forEach(node => node.remove());

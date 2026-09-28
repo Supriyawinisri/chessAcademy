@@ -12,7 +12,7 @@ Edit **content.json** in VS Code. You do not need to change `index.html` for rou
 - `courses`: heading, introduction, course names and matching level descriptions, displayed on the separate `courses.html` page. No course fees are displayed.
 - `classes.offline` and `classes.online`: class titles, descriptions, schedules and Courses-page button labels. `classes.online.batches` holds each batch's sessions and amount.
 - `classes.features`: coaching features.
-- `contact`: phone numbers, WhatsApp destination and message, and contact labels.
+- `contact`: phone numbers, WhatsApp destination and message, directions button label, and contact labels.
 - `footer`: the back-to-top label.
 - `page`: browser title and search description.
 
