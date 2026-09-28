@@ -28,7 +28,7 @@ The pages read `content.json` when they load. The document title, description, h
 
 ## Posters
 
-Keep `offline-poster.jpg` and `online-poster.jpg` alongside the HTML pages. The Courses page links to `offline.html` and `online.html`; each page shows the matching class details and poster. Online session times and amounts are listed from `classes.online.batches` in `content.json`. To update a poster, replace its image using the same filename. The filenames are defined in each class page, so update the matching page if you use a different name. Editing `content.json` does not change text printed inside an image.
+Keep `offline-poster.jpg` and `online-poster.jpg` alongside the HTML pages. Course schedules and amounts appear on `courses.html`; `online.html` and `offline.html` focus on format details and posters. The Offline page also links to directions using the address in `content.json`. To update a poster, replace its image using the same filename. The filenames are defined in each class page, so update the matching page if you use a different name. Editing `content.json` does not change text printed inside an image.
 
 ## Preview and publish
 

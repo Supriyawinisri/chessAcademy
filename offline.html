@@ -22,8 +22,7 @@
     .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
     h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
     h1 { margin: 12px 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; }
-    .description, .schedule { color: #4b554e; line-height: 1.7; }
-    .schedule { margin-top: 22px; }
+    .description { color: #4b554e; line-height: 1.7; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; }
     .btn-secondary { background: transparent; color: #16211b; }
@@ -35,6 +34,10 @@
     h2 { margin: 0 0 20px; font-size: 2rem; }
     .feature-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .feature { padding-top: 14px; border-top: 3px solid #c59942; font-weight: 700; line-height: 1.5; }
+    .venue { margin-top: 48px; padding: 26px 0; border-top: 1px solid #d9d6ca; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+    .venue h2 { margin: 8px 0 10px; font-size: 1.8rem; }
+    .venue address { color: #4b554e; font-style: normal; line-height: 1.7; }
+    .venue .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
     .contact { margin-top: 54px; padding: 24px 0; border-top: 1px solid #d9d6ca; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
     .contact a { color: #745118; font-weight: 700; text-decoration: none; }
     .footer { padding: 22px 0; background: #101715; color: #e1e4dc; }
@@ -45,7 +48,7 @@
       main { padding: 36px 0 48px; }
       .detail { grid-template-columns: 1fr; gap: 34px; }
       .feature-list { grid-template-columns: repeat(2, 1fr); }
-      .features { margin-top: 44px; }
+      .features, .venue { margin-top: 44px; }
     }
     @media (max-width: 420px) {
       .wrap { width: min(100% - 32px, 1100px); }
@@ -59,7 +62,7 @@
   <header class="top">
     <div class="wrap nav">
       <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
-      <a class="back" href="index.html#classes">Back to classes</a>
+      <a class="back" href="courses.html">Back to courses</a>
     </div>
   </header>
   <main class="wrap">
@@ -68,10 +71,9 @@
         <div class="eyebrow">In-person coaching · Chennai</div>
         <h1 id="class-title">Offline classes</h1>
         <p class="description" id="class-description">Chess coaching in Nolambur, Chennai.</p>
-        <p class="schedule" id="class-schedule"></p>
         <div class="actions">
           <a class="btn" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
-          <a class="btn btn-secondary" href="index.html#classes">Explore other classes</a>
+          <a class="btn btn-secondary" href="courses.html">Browse course schedules</a>
         </div>
       </div>
       <figure>
@@ -80,6 +82,14 @@
         </a>
         <figcaption>Class information and enrollment details</figcaption>
       </figure>
+    </section>
+    <section class="venue" aria-labelledby="venue-title">
+      <div>
+        <div class="eyebrow">Visit us</div>
+        <h2 id="venue-title">Our in-person classes meet in Nolambur.</h2>
+        <address id="venue-address"></address>
+      </div>
+      <a class="btn btn-secondary" id="directions-link" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Get directions</a>
     </section>
     <section class="features" aria-labelledby="features-title">
       <h2 id="features-title">Coaching that grows with your child</h2>
@@ -106,7 +116,8 @@
         document.querySelector('#academy-name').textContent = settings.academy.name;
         document.querySelector('#class-title').textContent = mode.title;
         document.querySelector('#class-description').textContent = mode.description;
-        document.querySelector('#class-schedule').textContent = mode.schedule;
+        document.querySelector('#venue-address').textContent = settings.academy.address.join(', ');
+        document.querySelector('#directions-link').href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(settings.academy.address.join(', '));
         document.querySelector('#poster').src = posterFile;
         document.querySelector('#poster-link').href = posterFile;
         document.querySelector('#poster').alt = mode.title + ' poster';

@@ -22,8 +22,7 @@
     .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
     h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
     h1 { margin: 12px 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; }
-    .description, .schedule { color: #4b554e; line-height: 1.7; }
-    .schedule { margin-top: 22px; }
+    .description { color: #4b554e; line-height: 1.7; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; }
     .btn-secondary { background: transparent; color: #16211b; }
@@ -31,14 +30,6 @@
     figure img { display: block; width: 100%; height: auto; }
     figure a { display: block; }
     figcaption { padding: 12px 4px 2px; color: #4b554e; font-size: .9rem; }
-    .batches { margin-top: 64px; padding-top: 32px; border-top: 1px solid #d9d6ca; }
-    .batch-table { width: 100%; border-collapse: collapse; text-align: left; }
-    .batch-table th, .batch-table td { padding: 14px 12px; border-bottom: 1px solid #d9d6ca; vertical-align: top; }
-    .batch-table th { color: #745118; font-size: .85rem; }
-    .batch-table td:first-child { font-weight: 700; }
-    .batch-table td:last-child { white-space: nowrap; font-weight: 700; }
-    .session + .session { margin-top: 5px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     .features { margin-top: 64px; padding-top: 32px; border-top: 1px solid #d9d6ca; }
     h2 { margin: 0 0 20px; font-size: 2rem; }
     .feature-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -53,17 +44,7 @@
       main { padding: 36px 0 48px; }
       .detail { grid-template-columns: 1fr; gap: 34px; }
       .feature-list { grid-template-columns: repeat(2, 1fr); }
-      .features, .batches { margin-top: 44px; }
-    }
-    @media (max-width: 560px) {
-      .batch-table thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-      .batch-table, .batch-table tbody, .batch-table tr, .batch-table td { display: block; width: 100%; }
-      .batch-table tr { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 14px 0; border-bottom: 1px solid #d9d6ca; }
-      .batch-table td { padding: 0; border: 0; }
-      .batch-table td::before { content: attr(data-label); display: block; margin-bottom: 4px; color: #745118; font-size: .78rem; font-weight: 700; }
-      .batch-table td:first-child { grid-column: 1; }
-      .batch-table td:nth-child(2) { grid-column: 1 / -1; }
-      .batch-table td:last-child { grid-column: 2; grid-row: 1; text-align: right; }
+      .features { margin-top: 44px; }
     }
     @media (max-width: 420px) {
       .wrap { width: min(100% - 32px, 1100px); }
@@ -77,7 +58,7 @@
   <header class="top">
     <div class="wrap nav">
       <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
-      <a class="back" href="index.html#classes">Back to classes</a>
+      <a class="back" href="courses.html">Back to courses</a>
     </div>
   </header>
   <main class="wrap">
@@ -86,10 +67,9 @@
         <div class="eyebrow">Live coaching · Learn from home</div>
         <h1 id="class-title">Online classes</h1>
         <p class="description" id="class-description">Chess coaching for children learning from home.</p>
-        <p class="schedule" id="class-schedule"></p>
         <div class="actions">
           <a class="btn" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
-          <a class="btn btn-secondary" href="index.html#classes">Explore other classes</a>
+          <a class="btn btn-secondary" href="courses.html">Browse course schedules</a>
         </div>
       </div>
       <figure>
@@ -98,14 +78,6 @@
         </a>
         <figcaption>Class information and enrollment details</figcaption>
       </figure>
-    </section>
-    <section class="batches" aria-labelledby="batches-title">
-      <h2 id="batches-title">Online batch schedules and amounts</h2>
-      <table class="batch-table">
-        <caption class="sr-only">Weekly online class sessions and amounts by batch</caption>
-        <thead><tr><th scope="col">Batch</th><th scope="col">Weekly schedule</th><th scope="col">Amount</th></tr></thead>
-        <tbody id="batch-list"></tbody>
-      </table>
     </section>
     <section class="features" aria-labelledby="features-title">
       <h2 id="features-title">Coaching that grows with your child</h2>
@@ -132,26 +104,6 @@
         document.querySelector('#academy-name').textContent = settings.academy.name;
         document.querySelector('#class-title').textContent = mode.title;
         document.querySelector('#class-description').textContent = mode.description;
-        document.querySelector('#class-schedule').textContent = mode.schedule;
-        document.querySelector('#batch-list').replaceChildren(...mode.batches.map(batch => {
-          const row = document.createElement('tr');
-          const name = document.createElement('td');
-          name.dataset.label = 'Batch';
-          name.textContent = batch.name;
-          const schedule = document.createElement('td');
-          schedule.dataset.label = 'Weekly schedule';
-          schedule.append(...batch.sessions.map(session => {
-            const line = document.createElement('div');
-            line.className = 'session';
-            line.textContent = session.day + ' · ' + session.time;
-            return line;
-          }));
-          const amount = document.createElement('td');
-          amount.dataset.label = 'Amount';
-          amount.textContent = batch.amount;
-          row.append(name, schedule, amount);
-          return row;
-        }));
         document.querySelector('#poster').src = posterFile;
         document.querySelector('#poster-link').href = posterFile;
         document.querySelector('#poster').alt = mode.title + ' poster';
