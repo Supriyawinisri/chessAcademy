@@ -1,192 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101715">
-  <meta name="description" content="Offline chess classes in Nolambur, Chennai.">
-  <link rel="icon" type="image/jpeg" href="/logo.jpg">
-  <link rel="apple-touch-icon" href="/logo.jpg">
-  <title>Offline classes | Little Shishyas Chess Academy</title>
-  <style>
-    :root { font-family: Arial, Helvetica, sans-serif; color: #17201b; background: #f8f6ef; font-size: 16px; }
-    * { box-sizing: border-box; }
-    body { margin: 0; }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid #dbab42; outline-offset: 4px; }
-    .wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
-    .top { background: #101715; color: #fff; }
-    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { color: #f4d280; font: bold 1.1rem Georgia, serif; text-decoration: none; }
-    .back { color: #f6e5b8; text-decoration: none; }
-    main { padding-bottom: 64px; }
-    .offline-hero { padding: 54px 0 58px; background: radial-gradient(circle at 78% 40%, #354237 0, #101715 48%); color: #fff; }
-    .detail { display: grid; grid-template-columns: 1fr minmax(280px, .72fr); gap: 64px; align-items: center; }
-    .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
-    .offline-hero .eyebrow { color: #eac46e; }
-    h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
-    h1 { margin: 12px 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; }
-    .description { max-width: 540px; color: #e4e8e2; font-size: 1.08rem; line-height: 1.7; }
-    .schedule { max-width: 540px; margin-top: 22px; padding-left: 14px; border-left: 3px solid #eac46e; color: #f2e6c5; line-height: 1.65; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; transition: transform .18s ease, background-color .18s ease; }
-    .btn:hover { transform: translateY(-2px); background: #304236; }
-    .btn-primary { border-color: #eec874; background: #eec874; color: #18211b; }
-    .btn-primary:hover { background: #f4d990; }
-    .btn-secondary { border-color: #bba566; background: transparent; color: #f6e5b8; }
-    figure { width: min(100%, 370px); justify-self: end; margin: 0; }
-    figure img { display: block; width: 100%; height: auto; border: 8px solid #e3c16f; box-shadow: 18px 24px 45px #0006; }
-    figure a { display: block; }
-    figcaption { padding: 12px 4px 2px; color: #f2e6c5; font-size: .9rem; }
-    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 34px; border-top: 1px solid #ffffff30; }
-    .fact { padding: 18px 16px 0 0; }
-    .fact + .fact { padding-left: 18px; border-left: 1px solid #ffffff30; }
-    .fact-label { display: block; margin-bottom: 6px; color: #eac46e; font-size: .76rem; font-weight: 700; text-transform: uppercase; }
-    .fact-value { color: #fff; font-weight: 700; line-height: 1.45; }
-    .fees { margin-top: 54px; }
-    h2 { margin: 0 0 20px; font-size: 2rem; }
-    .fees-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
-    .fees-heading p { margin: 0 0 20px; color: #596158; }
-    .fee-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .fee-item { min-height: 145px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 22px; border: 1px solid #d9d6ca; border-top: 4px solid #c59942; background: #fff; }
-    .fee-level { color: #596158; font-weight: 700; }
-    .fee-amount { display: inline-flex; align-items: center; min-height: 44px; padding: 7px 14px; border: 1px solid #c59942; border-radius: 4px; background: #f3ead0; color: #62430f; font: bold 1.45rem Georgia, 'Times New Roman', serif; }
-    .fee-note { margin: 18px 0 0; padding: 14px 16px; border-left: 3px solid #c59942; background: #eeede4; color: #4b554e; line-height: 1.6; }
-    .venue { margin-top: 56px; padding: 28px; border: 1px solid #d9d6ca; background: #eae9df; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
-    .venue h2 { margin: 8px 0 10px; font-size: 1.8rem; }
-    .venue address { color: #4b554e; font-style: normal; line-height: 1.7; }
-    .venue .eyebrow { color: #8d651a; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
-    .contact { margin-top: 48px; padding: 24px 0; border-top: 1px solid #d9d6ca; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
-    .contact a { color: #745118; font-weight: 700; text-decoration: none; }
-    .footer { padding: 22px 0; background: #101715; color: #e1e4dc; }
-    .footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer a { color: #f4d280; }
-    @media (max-width: 700px) {
-      .nav { min-height: 64px; }
-      .offline-hero { padding: 36px 0 42px; }
-      .detail { grid-template-columns: 1fr; gap: 34px; }
-      figure { justify-self: center; width: min(100%, 330px); }
-      .quick-facts { margin-top: 26px; }
-      .fees { margin-top: 42px; }
-      .venue { margin-top: 42px; }
-      .fee-list { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 420px) {
-      .wrap { width: min(100% - 32px, 1100px); }
-      .actions { flex-direction: column; }
-      .btn { width: 100%; }
-      .fact { padding-right: 8px; }
-      .fact + .fact { padding-left: 10px; }
-      .fact-value { font-size: .9rem; }
-      .venue { padding: 20px; }
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101715">
+    <meta name="description" content="Offline chess classes in Nolambur, Chennai.">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+    <title>Offline classes | Little Shishyas Chess Academy</title>
+    <style>
+        :root {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #17201b;
+            background: #f8f6ef;
+            font-size: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #dbab42;
+            outline-offset: 4px;
+        }
+
+        .wrap {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .top {
+            background: #101715;
+            color: #fff;
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: #f4d280;
+            font: bold 1.1rem Georgia, serif;
+            text-decoration: none;
+        }
+
+        .back {
+            color: #f6e5b8;
+            text-decoration: none;
+        }
+
+        main {
+            padding-bottom: 64px;
+        }
+
+        .offline-hero {
+            padding: 54px 0 58px;
+            background: radial-gradient(circle at 78% 40%, #354237 0, #101715 48%);
+            color: #fff;
+        }
+
+        .detail {
+            display: grid;
+            grid-template-columns: 1fr minmax(280px, .72fr);
+            gap: 64px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: #8d651a;
+            font-size: .8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .offline-hero .eyebrow {
+            color: #eac46e;
+        }
+
+        h1,
+        h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        h1 {
+            margin: 12px 0 18px;
+            font-size: clamp(2.6rem, 6vw, 4.6rem);
+            line-height: 1.04;
+        }
+
+        .description {
+            max-width: 540px;
+            color: #e4e8e2;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .schedule {
+            max-width: 540px;
+            margin-top: 22px;
+            padding-left: 14px;
+            border-left: 3px solid #eac46e;
+            color: #f2e6c5;
+            line-height: 1.65;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border: 1px solid #16211b;
+            border-radius: 4px;
+            background: #16211b;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform .18s ease, background-color .18s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #304236;
+        }
+
+        .btn-primary {
+            border-color: #eec874;
+            background: #eec874;
+            color: #18211b;
+        }
+
+        .btn-primary:hover {
+            background: #f4d990;
+        }
+
+        .btn-secondary {
+            border-color: #bba566;
+            background: transparent;
+            color: #f6e5b8;
+        }
+
+        figure {
+            width: min(100%, 370px);
+            justify-self: end;
+            margin: 0;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 8px solid #e3c16f;
+            box-shadow: 18px 24px 45px #0006;
+        }
+
+        figure a {
+            display: block;
+        }
+
+        figcaption {
+            padding: 12px 4px 2px;
+            color: #f2e6c5;
+            font-size: .9rem;
+        }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 34px;
+            border-top: 1px solid #ffffff30;
+        }
+
+        .fact {
+            padding: 18px 16px 0 0;
+        }
+
+        .fact+.fact {
+            padding-left: 18px;
+            border-left: 1px solid #ffffff30;
+        }
+
+        .fact-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #eac46e;
+            font-size: .76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .fact-value {
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+
+        .fees {
+            margin-top: 54px;
+        }
+
+        h2 {
+            margin: 0 0 20px;
+            font-size: 2rem;
+        }
+
+        .fees-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .fees-heading p {
+            margin: 0 0 20px;
+            color: #596158;
+        }
+
+        .fee-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .fee-item {
+            min-height: 145px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 22px;
+            border: 1px solid #d9d6ca;
+            border-top: 4px solid #c59942;
+            background: #fff;
+        }
+
+        .fee-level {
+            color: #596158;
+            font-weight: 700;
+        }
+
+        .fee-amount {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 7px 14px;
+            border: 1px solid #c59942;
+            border-radius: 4px;
+            background: #f3ead0;
+            color: #62430f;
+            font: bold 1.45rem Georgia, 'Times New Roman', serif;
+        }
+
+        .fee-note {
+            margin: 18px 0 0;
+            padding: 14px 16px;
+            border-left: 3px solid #c59942;
+            background: #eeede4;
+            color: #4b554e;
+            line-height: 1.6;
+        }
+
+        .venue {
+            margin-top: 56px;
+            padding: 28px;
+            border: 1px solid #d9d6ca;
+            background: #eae9df;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .venue h2 {
+            margin: 8px 0 10px;
+            font-size: 1.8rem;
+        }
+
+        .venue address {
+            color: #4b554e;
+            font-style: normal;
+            line-height: 1.7;
+        }
+
+        .venue .eyebrow {
+            color: #8d651a;
+            font-size: .8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .contact {
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid #d9d6ca;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px 24px;
+        }
+
+        .contact a {
+            color: #745118;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer {
+            padding: 22px 0;
+            background: #101715;
+            color: #e1e4dc;
+        }
+
+        .footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: #f4d280;
+        }
+
+        @media (max-width: 700px) {
+            .nav {
+                min-height: 64px;
+            }
+
+            .offline-hero {
+                padding: 36px 0 42px;
+            }
+
+            .detail {
+                grid-template-columns: 1fr;
+                gap: 34px;
+            }
+
+            figure {
+                justify-self: center;
+                width: min(100%, 330px);
+            }
+
+            .quick-facts {
+                margin-top: 26px;
+            }
+
+            .fees {
+                margin-top: 42px;
+            }
+
+            .venue {
+                margin-top: 42px;
+            }
+
+            .fee-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .wrap {
+                width: min(100% - 32px, 1100px);
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .fact {
+                padding-right: 8px;
+            }
+
+            .fact+.fact {
+                padding-left: 10px;
+            }
+
+            .fact-value {
+                font-size: .9rem;
+            }
+
+            .venue {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header class="top">
-    <div class="wrap nav">
-      <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
-      <a class="back" href="courses.html">Back to courses</a>
-    </div>
-  </header>
-  <main>
-    <section class="offline-hero" aria-labelledby="class-title">
-      <div class="wrap">
-        <div class="detail">
-          <div>
-            <div class="eyebrow">In-person coaching · Chennai</div>
-            <h1 id="class-title">Offline classes</h1>
-            <p class="description" id="class-description">Chess coaching for ages 4 and above in Nolambur, Chennai.</p>
-            <p class="schedule" id="class-schedule"></p>
-            <div class="actions">
-              <a class="btn btn-primary" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
-              <a class="btn btn-secondary" href="courses.html">Browse course levels</a>
+    <header class="top">
+        <div class="wrap nav">
+            <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
+            <a class="back" href="courses.html">Back to courses</a>
+        </div>
+    </header>
+    <main>
+        <section class="offline-hero" aria-labelledby="class-title">
+            <div class="wrap">
+                <div class="detail">
+                    <div>
+                        <div class="eyebrow">In-person coaching · Chennai</div>
+                        <h1 id="class-title">Offline classes</h1>
+                        <p class="description" id="class-description">Chess coaching for ages 4 and above in Nolambur,
+                            Chennai.</p>
+                        <p class="schedule" id="class-schedule"></p>
+                        <div class="actions">
+                            <a class="btn btn-primary" id="enquiry" href="https://wa.me/" target="_blank"
+                                rel="noopener noreferrer">Enquire on WhatsApp</a>
+                            <a class="btn btn-secondary" href="courses.html">Browse course levels</a>
+                        </div>
+                        <div class="quick-facts" aria-label="Offline class details">
+                            <div class="fact"><span class="fact-label">Age</span><span class="fact-value">4 years and
+                                    above</span></div>
+                            <div class="fact"><span class="fact-label">Days</span><span class="fact-value">Monday,
+                                    Wednesday, Friday</span></div>
+                            <div class="fact"><span class="fact-label">Area</span><span class="fact-value">Nolambur,
+                                    Chennai</span></div>
+                        </div>
+                    </div>
+                    <figure>
+                        <a id="poster-link" href="offline-poster.jpg" target="_blank" rel="noopener noreferrer">
+                            <img id="poster" src="offline-poster.jpg" alt="Offline chess class poster">
+                        </a>
+                        <figcaption>Open the poster for enrollment information.</figcaption>
+                    </figure>
+                </div>
             </div>
-            <div class="quick-facts" aria-label="Offline class details">
-              <div class="fact"><span class="fact-label">Age</span><span class="fact-value">4 years and above</span></div>
-              <div class="fact"><span class="fact-label">Days</span><span class="fact-value">Monday, Wednesday, Friday</span></div>
-              <div class="fact"><span class="fact-label">Area</span><span class="fact-value">Nolambur, Chennai</span></div>
-            </div>
-          </div>
-          <figure>
-            <a id="poster-link" href="offline-poster.jpg" target="_blank" rel="noopener noreferrer">
-              <img id="poster" src="offline-poster.jpg" alt="Offline chess class poster">
-            </a>
-            <figcaption>Open the poster for enrollment information.</figcaption>
-          </figure>
+        </section>
+        <div class="wrap">
+            <section class="fees" aria-labelledby="fees-title">
+                <div class="fees-heading">
+                    <h2 id="fees-title">Choose your level</h2>
+                    <p>Offline class fees</p>
+                </div>
+                <div class="fee-list" id="fee-list"></div>
+                <p class="fee-note" id="fee-note"></p>
+            </section>
+            <section class="venue" aria-labelledby="venue-title">
+                <div>
+                    <div class="eyebrow">Find the academy</div>
+                    <h2 id="venue-title">Learn together in Nolambur.</h2>
+                    <address id="venue-address"></address>
+                </div>
+                <a class="btn" id="directions-link" href="https://www.google.com/maps" target="_blank"
+                    rel="noopener noreferrer">Get directions</a>
+            </section>
+            <section class="contact" aria-label="Contact information">
+                <strong id="academy-name">Little Shishyas Chess Academy</strong>
+                <div id="phone-list"></div>
+            </section>
         </div>
-      </div>
-    </section>
-    <div class="wrap">
-      <section class="fees" aria-labelledby="fees-title">
-        <div class="fees-heading">
-          <h2 id="fees-title">Choose your level</h2>
-          <p>Offline class fees</p>
-        </div>
-        <div class="fee-list" id="fee-list"></div>
-        <p class="fee-note" id="fee-note"></p>
-      </section>
-      <section class="venue" aria-labelledby="venue-title">
-        <div>
-          <div class="eyebrow">Find the academy</div>
-          <h2 id="venue-title">Learn together in Nolambur.</h2>
-          <address id="venue-address"></address>
-        </div>
-        <a class="btn" id="directions-link" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Get directions</a>
-      </section>
-      <section class="contact" aria-label="Contact information">
-        <strong id="academy-name">Little Shishyas Chess Academy</strong>
-        <div id="phone-list"></div>
-      </section>
-    </div>
-  </main>
-  <footer class="footer"><div class="wrap"><span>Little Shishyas Chess Academy</span><a href="index.html">Home</a></div></footer>
-  <script>
-    (async () => {
-      const modeKey = 'offline';
-      const posterFile = 'offline-poster.jpg';
-      try {
-        const response = await fetch('content.json', { cache: 'no-cache' });
-        if (!response.ok) throw new Error('Content request failed: ' + response.status);
-        const settings = await response.json();
-        const mode = settings.classes[modeKey];
-        document.title = mode.title + ' | ' + settings.academy.name;
-        document.querySelector('meta[name="description"]').content = mode.description;
-        document.querySelector('.brand').textContent = settings.academy.name;
-        document.querySelector('#academy-name').textContent = settings.academy.name;
-        document.querySelector('#class-title').textContent = mode.title;
-        document.querySelector('#class-description').textContent = mode.description;
-        document.querySelector('#class-schedule').textContent = mode.schedule;
-        document.querySelector('#venue-address').textContent = settings.academy.address.join(', ');
-        document.querySelector('#directions-link').href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(settings.academy.address.join(', '));
-        document.querySelector('#fee-list').replaceChildren(...mode.fees.map(fee => {
-          const item = document.createElement('div');
-          item.className = 'fee-item';
-          const level = document.createElement('span');
-          level.className = 'fee-level';
-          level.textContent = fee.level;
-          const amount = document.createElement('strong');
-          amount.className = 'fee-amount';
-          amount.textContent = fee.amount;
-          item.append(level, amount);
-          return item;
-        }));
-        document.querySelector('#fee-note').textContent = mode.feeNote;
-        document.querySelector('#poster').src = posterFile;
-        document.querySelector('#poster-link').href = posterFile;
-        document.querySelector('#poster').alt = mode.title + ' poster';
-        document.querySelector('#enquiry').href = 'https://wa.me/' + settings.contact.whatsappNumber + '?text=' + encodeURIComponent(settings.contact.whatsappMessage);
-        document.querySelector('#phone-list').replaceChildren(...settings.contact.phones.map(phone => {
-          const link = document.createElement('a');
-          link.href = 'tel:' + phone.replace(/[^+\d]/g, '');
-          link.textContent = phone;
-          link.style.marginLeft = '16px';
-          return link;
-        }));
-      } catch (error) {
-        console.error('Unable to load class details from content.json.', error);
-      }
-    })();
-  </script>
+    </main>
+    <footer class="footer">
+        <div class="wrap"><span>Little Shishyas Chess Academy</span><a href="index.html">Home</a></div>
+    </footer>
+    <script>
+        (async () => {
+            const modeKey = 'offline';
+            const posterFile = 'offline-poster.jpg';
+            try {
+                const response = await fetch('content.json', { cache: 'no-cache' });
+                if (!response.ok) throw new Error('Content request failed: ' + response.status);
+                const settings = await response.json();
+                const mode = settings.classes[modeKey];
+                document.title = mode.title + ' | ' + settings.academy.name;
+                document.querySelector('meta[name="description"]').content = mode.description;
+                document.querySelector('.brand').textContent = settings.academy.name;
+                document.querySelector('#academy-name').textContent = settings.academy.name;
+                document.querySelector('#class-title').textContent = mode.title;
+                document.querySelector('#class-description').textContent = mode.description;
+                document.querySelector('#class-schedule').textContent = mode.schedule;
+                document.querySelector('#venue-address').textContent = settings.academy.address.join(', ');
+                document.querySelector('#directions-link').href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(settings.academy.address.join(', '));
+                document.querySelector('#fee-list').replaceChildren(...mode.fees.map(fee => {
+                    const item = document.createElement('div');
+                    item.className = 'fee-item';
+                    const level = document.createElement('span');
+                    level.className = 'fee-level';
+                    level.textContent = fee.level;
+                    const amount = document.createElement('strong');
+                    amount.className = 'fee-amount';
+                    amount.textContent = fee.amount;
+                    item.append(level, amount);
+                    return item;
+                }));
+                document.querySelector('#fee-note').textContent = mode.feeNote;
+                document.querySelector('#poster').src = posterFile;
+                document.querySelector('#poster-link').href = posterFile;
+                document.querySelector('#poster').alt = mode.title + ' poster';
+                document.querySelector('#enquiry').href = 'https://wa.me/' + settings.contact.whatsappNumber + '?text=' + encodeURIComponent(settings.contact.whatsappMessage);
+                document.querySelector('#phone-list').replaceChildren(...settings.contact.phones.map(phone => {
+                    const link = document.createElement('a');
+                    link.href = 'tel:' + phone.replace(/[^+\d]/g, '');
+                    link.textContent = phone;
+                    link.style.marginLeft = '16px';
+                    return link;
+                }));
+            } catch (error) {
+                console.error('Unable to load class details from content.json.', error);
+            }
+        })();
+    </script>
 </body>
+
 </html>

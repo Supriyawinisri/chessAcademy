@@ -1,334 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101715">
-  <meta name="description" content="Explore chess course levels at Little Shishyas Chess Academy.">
-  <title>Courses | Little Shishyas Chess Academy</title>
-  <link rel="icon" type="image/jpeg" href="/logo.jpg">
-  <link rel="apple-touch-icon" href="/logo.jpg">
-  <style>
-    :root { font-family: Arial, Helvetica, sans-serif; color: #17201b; background: #f8f6ef; font-size: 16px; }
-    * { box-sizing: border-box; }
-    body { margin: 0; }
-    a { color: inherit; }
-    button { font: inherit; }
-    a:focus-visible { outline: 3px solid #dbab42; outline-offset: 4px; }
-    button:focus-visible { outline: 3px solid #dbab42; outline-offset: 3px; }
-    .wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
-    .top { background: #101715; color: #fff; }
-    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { color: #f4d280; font: bold 1.1rem Georgia, serif; text-decoration: none; }
-    .back { color: #f6e5b8; text-decoration: none; }
-    .hero { padding: 64px 0 72px; background: radial-gradient(circle at 80% 30%, #344033 0, #101715 50%); color: #fff; }
-    .eyebrow { color: #eac46e; font-size: .82rem; font-weight: 700; text-transform: uppercase; }
-    h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
-    h1 { max-width: 760px; margin: 14px 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; }
-    .intro { max-width: 680px; margin: 0; color: #e4e8e2; font-size: 1.08rem; line-height: 1.7; }
-    .section { padding: 54px 0 72px; }
-    .step-label { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; color: #596158; font-size: .85rem; font-weight: 700; text-transform: uppercase; }
-    .step-number { width: 32px; height: 32px; display: inline-grid; place-items: center; border-radius: 50%; background: #eac46e; color: #17201b; }
-    .levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .level-button { width: 100%; min-height: 158px; display: grid; grid-template-columns: 52px minmax(0, 1fr) 20px; align-items: center; gap: 14px; padding: 18px; border: 1px solid #d4d2c6; border-top: 4px solid #c59942; border-radius: 4px; background: #fff; color: #17201b; text-align: left; cursor: pointer; transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
-    .level-button:hover { border-color: #8d651a; transform: translateY(-2px); }
-    .level-button[aria-pressed="true"] { border-color: #16211b; border-top-color: #eac46e; background: #16211b; color: #fff; }
-    .level-icon { width: 52px; height: 52px; display: grid; place-items: center; background: #f3ead0; color: #745118; font: 2.25rem Georgia, serif; }
-    .level-button[aria-pressed="true"] .level-icon { background: #eac46e; color: #16211b; }
-    .level-copy { min-width: 0; display: grid; gap: 7px; }
-    .level-index { color: #8d651a; font-size: .72rem; font-weight: 700; text-transform: uppercase; }
-    .level-name { font: bold 1.35rem Georgia, 'Times New Roman', serif; }
-    .level-description { color: #596158; font-size: .82rem; font-weight: 400; line-height: 1.5; }
-    .level-state { color: #73796f; font-size: .8rem; }
-    .level-button[aria-pressed="true"] .level-index, .level-button[aria-pressed="true"] .level-state { color: #eac46e; }
-    .level-button[aria-pressed="true"] .level-description { color: #e4e8e2; }
-    .level-arrow { color: #8d651a; font-size: 1.35rem; transition: transform .18s ease; }
-    .level-button[aria-pressed="true"] .level-arrow { color: #eac46e; transform: translateX(3px); }
-    .formats { margin-top: 42px; padding-top: 28px; border-top: 1px solid #d9d6ca; }
-    .formats h2, .schedule-panel h2 { margin: 0 0 18px; font-size: 1.7rem; }
-    .mode-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .mode-button { min-height: 116px; display: grid; grid-template-columns: 52px minmax(0, 1fr) 20px; align-items: center; gap: 16px; padding: 18px; border: 1px solid #d4d2c6; border-radius: 4px; background: #fff; color: #17201b; text-align: left; cursor: pointer; transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
-    .mode-button:hover { border-color: #8d651a; transform: translateY(-2px); }
-    .mode-button[aria-pressed="true"] { border-color: #16211b; background: #16211b; color: #fff; }
-    .mode-icon { width: 48px; height: 48px; display: grid; place-items: center; color: #745118; background: #f3ead0; }
-    .mode-button[aria-pressed="true"] .mode-icon { color: #16211b; background: #eac46e; }
-    .mode-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .mode-copy { display: grid; gap: 6px; }
-    .mode-title { font: bold 1.25rem Georgia, 'Times New Roman', serif; }
-    .mode-description { color: #596158; font-size: .88rem; line-height: 1.45; }
-    .mode-button[aria-pressed="true"] .mode-description { color: #e4e8e2; }
-    .mode-arrow { color: #8d651a; font-size: 1.35rem; }
-    .mode-button[aria-pressed="true"] .mode-arrow { color: #eac46e; }
-    .schedule-panel { margin-top: 30px; padding: 26px 0 0; border-top: 1px solid #d9d6ca; }
-    .schedule-description { color: #4b554e; line-height: 1.7; }
-    .batch-list { list-style: none; margin: 22px 0 0; padding: 0; }
-    .batch-item { border-top: 1px solid #d9d6ca; }
-    .batch-row { display: grid; grid-template-columns: minmax(140px, .7fr) minmax(0, 1.4fr) auto; align-items: center; gap: 16px; padding: 18px 12px; color: #17201b; }
-    .batch-name { font-weight: 700; }
-    .batch-sessions { color: #4b554e; line-height: 1.6; }
-    .batch-amount, .fee-value { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 7px 12px; border: 1px solid #c59942; border-radius: 4px; background: #f3ead0; color: #62430f; font-weight: 800; white-space: nowrap; }
-    .fee-highlight { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 18px 0 8px; font-weight: 700; }
-    .fee-note { color: #596158; font-size: .92rem; line-height: 1.6; }
-    .schedule-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .reveal { animation: enter .24s ease-out both; }
-    @keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    [hidden] { display: none !important; }
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 32px; }
-    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #16211b; border-radius: 4px; background: #16211b; color: #fff; font-weight: 700; text-decoration: none; }
-    .btn-secondary { background: transparent; color: #16211b; }
-    .footer { padding: 22px 0; background: #101715; color: #e1e4dc; }
-    .footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer a { color: #f4d280; }
-    @media (max-width: 700px) {
-      .nav { min-height: 64px; }
-      .hero { padding: 44px 0 50px; }
-      .section { padding: 36px 0 50px; }
-      .levels { grid-template-columns: 1fr; }
-      .level-button { min-height: 92px; }
-      .mode-options { grid-template-columns: 1fr; }
-      .batch-row { grid-template-columns: 1fr auto; gap: 8px 16px; }
-      .batch-sessions { grid-column: 1 / -1; }
-      .batch-amount { grid-column: 2; grid-row: 1; }
-    }
-    @media (max-width: 420px) {
-      .wrap { width: min(100% - 32px, 1100px); }
-      .actions { flex-direction: column; align-items: stretch; }
-      .btn { width: 100%; }
-      .schedule-actions { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101715">
+    <meta name="description" content="Explore chess course levels at Little Shishyas Chess Academy.">
+    <title>Courses | Little Shishyas Chess Academy</title>
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+    <style>
+        :root {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #17201b;
+            background: #f8f6ef;
+            font-size: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #dbab42;
+            outline-offset: 4px;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #dbab42;
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .top {
+            background: #101715;
+            color: #fff;
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: #f4d280;
+            font: bold 1.1rem Georgia, serif;
+            text-decoration: none;
+        }
+
+        .back {
+            color: #f6e5b8;
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 64px 0 72px;
+            background: radial-gradient(circle at 80% 30%, #344033 0, #101715 50%);
+            color: #fff;
+        }
+
+        .eyebrow {
+            color: #eac46e;
+            font-size: .82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 14px 0 18px;
+            font-size: clamp(2.6rem, 6vw, 4.6rem);
+            line-height: 1.04;
+        }
+
+        .intro {
+            max-width: 680px;
+            margin: 0;
+            color: #e4e8e2;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .section {
+            padding: 54px 0 72px;
+        }
+
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 18px;
+            color: #596158;
+            font-size: .85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #eac46e;
+            color: #17201b;
+        }
+
+        .levels {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .level-button {
+            width: 100%;
+            min-height: 158px;
+            display: grid;
+            grid-template-columns: 52px minmax(0, 1fr) 20px;
+            align-items: center;
+            gap: 14px;
+            padding: 18px;
+            border: 1px solid #d4d2c6;
+            border-top: 4px solid #c59942;
+            border-radius: 4px;
+            background: #fff;
+            color: #17201b;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+        }
+
+        .level-button:hover {
+            border-color: #8d651a;
+            transform: translateY(-2px);
+        }
+
+        .level-button[aria-pressed="true"] {
+            border-color: #16211b;
+            border-top-color: #eac46e;
+            background: #16211b;
+            color: #fff;
+        }
+
+        .level-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: #f3ead0;
+            color: #745118;
+            font: 2.25rem Georgia, serif;
+        }
+
+        .level-button[aria-pressed="true"] .level-icon {
+            background: #eac46e;
+            color: #16211b;
+        }
+
+        .level-copy {
+            min-width: 0;
+            display: grid;
+            gap: 7px;
+        }
+
+        .level-index {
+            color: #8d651a;
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .level-name {
+            font: bold 1.35rem Georgia, 'Times New Roman', serif;
+        }
+
+        .level-description {
+            color: #596158;
+            font-size: .82rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .level-state {
+            color: #73796f;
+            font-size: .8rem;
+        }
+
+        .level-button[aria-pressed="true"] .level-index,
+        .level-button[aria-pressed="true"] .level-state {
+            color: #eac46e;
+        }
+
+        .level-button[aria-pressed="true"] .level-description {
+            color: #e4e8e2;
+        }
+
+        .level-arrow {
+            color: #8d651a;
+            font-size: 1.35rem;
+            transition: transform .18s ease;
+        }
+
+        .level-button[aria-pressed="true"] .level-arrow {
+            color: #eac46e;
+            transform: translateX(3px);
+        }
+
+        .formats {
+            margin-top: 42px;
+            padding-top: 28px;
+            border-top: 1px solid #d9d6ca;
+        }
+
+        .formats h2,
+        .schedule-panel h2 {
+            margin: 0 0 18px;
+            font-size: 1.7rem;
+        }
+
+        .mode-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .mode-button {
+            min-height: 116px;
+            display: grid;
+            grid-template-columns: 52px minmax(0, 1fr) 20px;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid #d4d2c6;
+            border-radius: 4px;
+            background: #fff;
+            color: #17201b;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+        }
+
+        .mode-button:hover {
+            border-color: #8d651a;
+            transform: translateY(-2px);
+        }
+
+        .mode-button[aria-pressed="true"] {
+            border-color: #16211b;
+            background: #16211b;
+            color: #fff;
+        }
+
+        .mode-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            color: #745118;
+            background: #f3ead0;
+        }
+
+        .mode-button[aria-pressed="true"] .mode-icon {
+            color: #16211b;
+            background: #eac46e;
+        }
+
+        .mode-icon svg {
+            width: 25px;
+            height: 25px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .mode-copy {
+            display: grid;
+            gap: 6px;
+        }
+
+        .mode-title {
+            font: bold 1.25rem Georgia, 'Times New Roman', serif;
+        }
+
+        .mode-description {
+            color: #596158;
+            font-size: .88rem;
+            line-height: 1.45;
+        }
+
+        .mode-button[aria-pressed="true"] .mode-description {
+            color: #e4e8e2;
+        }
+
+        .mode-arrow {
+            color: #8d651a;
+            font-size: 1.35rem;
+        }
+
+        .mode-button[aria-pressed="true"] .mode-arrow {
+            color: #eac46e;
+        }
+
+        .schedule-panel {
+            margin-top: 30px;
+            padding: 26px 0 0;
+            border-top: 1px solid #d9d6ca;
+        }
+
+        .schedule-description {
+            color: #4b554e;
+            line-height: 1.7;
+        }
+
+        .batch-list {
+            list-style: none;
+            margin: 22px 0 0;
+            padding: 0;
+        }
+
+        .batch-item {
+            border-top: 1px solid #d9d6ca;
+        }
+
+        .batch-row {
+            display: grid;
+            grid-template-columns: minmax(140px, .7fr) minmax(0, 1.4fr) auto;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 12px;
+            color: #17201b;
+        }
+
+        .batch-name {
+            font-weight: 700;
+        }
+
+        .batch-sessions {
+            color: #4b554e;
+            line-height: 1.6;
+        }
+
+        .batch-amount,
+        .fee-value {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 7px 12px;
+            border: 1px solid #c59942;
+            border-radius: 4px;
+            background: #f3ead0;
+            color: #62430f;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .fee-highlight {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 18px 0 8px;
+            font-weight: 700;
+        }
+
+        .fee-note {
+            color: #596158;
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+
+        .schedule-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .reveal {
+            animation: enter .24s ease-out both;
+        }
+
+        @keyframes enter {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border: 1px solid #16211b;
+            border-radius: 4px;
+            background: #16211b;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #16211b;
+        }
+
+        .footer {
+            padding: 22px 0;
+            background: #101715;
+            color: #e1e4dc;
+        }
+
+        .footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: #f4d280;
+        }
+
+        @media (max-width: 700px) {
+            .nav {
+                min-height: 64px;
+            }
+
+            .hero {
+                padding: 44px 0 50px;
+            }
+
+            .section {
+                padding: 36px 0 50px;
+            }
+
+            .levels {
+                grid-template-columns: 1fr;
+            }
+
+            .level-button {
+                min-height: 92px;
+            }
+
+            .mode-options {
+                grid-template-columns: 1fr;
+            }
+
+            .batch-row {
+                grid-template-columns: 1fr auto;
+                gap: 8px 16px;
+            }
+
+            .batch-sessions {
+                grid-column: 1 / -1;
+            }
+
+            .batch-amount {
+                grid-column: 2;
+                grid-row: 1;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .wrap {
+                width: min(100% - 32px, 1100px);
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .schedule-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header class="top">
-    <div class="wrap nav">
-      <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
-      <a class="back" href="index.html">Back to home</a>
-    </div>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="eyebrow" id="courses-label">Courses</div>
-        <h1 id="courses-heading">Find the right starting point.</h1>
-        <p class="intro" id="courses-introduction">Choose a level that matches your child's experience. Contact us for placement and enrollment details.</p>
-      </div>
-    </section>
-    <section class="section wrap" aria-label="Course levels">
-      <p class="step-label"><span class="step-number">01</span> Choose a course level</p>
-      <div class="levels" id="course-levels" role="group" aria-label="Choose a course level"></div>
-      <section class="formats" id="class-options" aria-labelledby="formats-heading" hidden>
-        <p class="step-label"><span class="step-number">02</span> <span id="format-step">Choose a class format</span></p>
-        <h2 id="formats-heading">Choose a class format</h2>
-        <div class="mode-options" id="mode-options" role="group" aria-label="Choose a class format">
+    <header class="top">
+        <div class="wrap nav">
+            <a class="brand" href="index.html">Little Shishyas Chess Academy</a>
+            <a class="back" href="index.html">Back to home</a>
         </div>
-        <section class="schedule-panel" id="schedule-panel" aria-live="polite" hidden>
-          <h2 id="schedule-heading"></h2>
-          <p class="schedule-description" id="schedule-description"></p>
-          <div id="schedule-details"></div>
-          <div class="schedule-actions">
-            <a class="btn" id="enquiry" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
-            <a class="btn btn-secondary" id="details-link" href="offline.html">More class details</a>
-          </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <div class="eyebrow" id="courses-label">Courses</div>
+                <h1 id="courses-heading">Find the right starting point.</h1>
+                <p class="intro" id="courses-introduction">Choose a level that matches your child's experience. Contact
+                    us for placement and enrollment details.</p>
+            </div>
         </section>
-      </section>
-    </section>
-  </main>
-  <footer class="footer"><div class="wrap"><span id="academy-name">Little Shishyas Chess Academy</span><a href="index.html">Home</a></div></footer>
-  <script>
-    (async () => {
-      try {
-        const response = await fetch('content.json', { cache: 'no-cache' });
-        if (!response.ok) throw new Error('Content request failed: ' + response.status);
-        const settings = await response.json();
-        const { academy, courses, classes, contact, navigation } = settings;
-        document.title = courses.heading + ' | ' + academy.name;
-        document.querySelector('meta[name="description"]').content = courses.introduction;
-        document.querySelector('.brand').textContent = academy.name;
-        document.querySelector('#academy-name').textContent = academy.name;
-        document.querySelector('#courses-label').textContent = navigation.courses;
-        document.querySelector('#courses-heading').textContent = courses.heading;
-        document.querySelector('#courses-introduction').textContent = courses.introduction;
-        const enquiryLink = document.querySelector('#enquiry');
-        const levelOptions = document.querySelector('#course-levels');
-        const modeOptions = document.querySelector('#mode-options');
-        const formatSection = document.querySelector('#class-options');
-        const schedulePanel = document.querySelector('#schedule-panel');
-        const scheduleHeading = document.querySelector('#schedule-heading');
-        const scheduleDescription = document.querySelector('#schedule-description');
-        const scheduleDetails = document.querySelector('#schedule-details');
-        const detailsLink = document.querySelector('#details-link');
-        const formatStep = document.querySelector('#format-step');
-        let selectedLevel = '';
-        const levelIcons = ['♙', '♘', '♕'];
+        <section class="section wrap" aria-label="Course levels">
+            <p class="step-label"><span class="step-number">01</span> Choose a course level</p>
+            <div class="levels" id="course-levels" role="group" aria-label="Choose a course level"></div>
+            <section class="formats" id="class-options" aria-labelledby="formats-heading" hidden>
+                <p class="step-label"><span class="step-number">02</span> <span id="format-step">Choose a class
+                        format</span></p>
+                <h2 id="formats-heading">Choose a class format</h2>
+                <div class="mode-options" id="mode-options" role="group" aria-label="Choose a class format">
+                </div>
+                <section class="schedule-panel" id="schedule-panel" aria-live="polite" hidden>
+                    <h2 id="schedule-heading"></h2>
+                    <p class="schedule-description" id="schedule-description"></p>
+                    <div id="schedule-details"></div>
+                    <div class="schedule-actions">
+                        <a class="btn" id="enquiry" href="https://wa.me/" target="_blank"
+                            rel="noopener noreferrer">Message on WhatsApp</a>
+                        <a class="btn btn-secondary" id="details-link" href="offline.html">More class details</a>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="wrap"><span id="academy-name">Little Shishyas Chess Academy</span><a href="index.html">Home</a>
+        </div>
+    </footer>
+    <script>
+        (async () => {
+            try {
+                const response = await fetch('content.json', { cache: 'no-cache' });
+                if (!response.ok) throw new Error('Content request failed: ' + response.status);
+                const settings = await response.json();
+                const { academy, courses, classes, contact, navigation } = settings;
+                document.title = courses.heading + ' | ' + academy.name;
+                document.querySelector('meta[name="description"]').content = courses.introduction;
+                document.querySelector('.brand').textContent = academy.name;
+                document.querySelector('#academy-name').textContent = academy.name;
+                document.querySelector('#courses-label').textContent = navigation.courses;
+                document.querySelector('#courses-heading').textContent = courses.heading;
+                document.querySelector('#courses-introduction').textContent = courses.introduction;
+                const enquiryLink = document.querySelector('#enquiry');
+                const levelOptions = document.querySelector('#course-levels');
+                const modeOptions = document.querySelector('#mode-options');
+                const formatSection = document.querySelector('#class-options');
+                const schedulePanel = document.querySelector('#schedule-panel');
+                const scheduleHeading = document.querySelector('#schedule-heading');
+                const scheduleDescription = document.querySelector('#schedule-description');
+                const scheduleDetails = document.querySelector('#schedule-details');
+                const detailsLink = document.querySelector('#details-link');
+                const formatStep = document.querySelector('#format-step');
+                let selectedLevel = '';
+                const levelIcons = ['♙', '♘', '♕'];
 
-        const createModeIcon = modeKey => {
-          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          svg.setAttribute('viewBox', '0 0 24 24');
-          svg.setAttribute('aria-hidden', 'true');
-          const shape = modeKey === 'offline' ? document.createElementNS('http://www.w3.org/2000/svg', 'path') : document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          shape.setAttribute('d', modeKey === 'offline' ? 'M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0ZM12 10h.01' : 'M3 4h18v13H3zM8 21h8M12 17v4');
-          svg.append(shape);
-          return svg;
-        };
+                const createModeIcon = modeKey => {
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('viewBox', '0 0 24 24');
+                    svg.setAttribute('aria-hidden', 'true');
+                    const shape = modeKey === 'offline' ? document.createElementNS('http://www.w3.org/2000/svg', 'path') : document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    shape.setAttribute('d', modeKey === 'offline' ? 'M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0ZM12 10h.01' : 'M3 4h18v13H3zM8 21h8M12 17v4');
+                    svg.append(shape);
+                    return svg;
+                };
 
-        const setEnquiry = message => {
-          enquiryLink.href = 'https://wa.me/' + contact.whatsappNumber + '?text=' + encodeURIComponent(message);
-        };
+                const setEnquiry = message => {
+                    enquiryLink.href = 'https://wa.me/' + contact.whatsappNumber + '?text=' + encodeURIComponent(message);
+                };
 
-        const reveal = element => {
-          element.hidden = false;
-          element.classList.remove('reveal');
-          requestAnimationFrame(() => element.classList.add('reveal'));
-        };
+                const reveal = element => {
+                    element.hidden = false;
+                    element.classList.remove('reveal');
+                    requestAnimationFrame(() => element.classList.add('reveal'));
+                };
 
-        const modeOptionsList = ['offline', 'online'];
-        modeOptions.replaceChildren(...modeOptionsList.map(modeKey => {
-          const mode = classes[modeKey];
-          const button = document.createElement('button');
-          button.className = 'mode-button';
-          button.type = 'button';
-          button.dataset.mode = modeKey;
-          button.setAttribute('aria-pressed', 'false');
-          button.setAttribute('aria-controls', 'schedule-panel');
-          const icon = document.createElement('span');
-          icon.className = 'mode-icon';
-          icon.append(createModeIcon(modeKey));
-          const copy = document.createElement('span');
-          copy.className = 'mode-copy';
-          const title = document.createElement('span');
-          title.className = 'mode-title';
-          title.textContent = mode.title;
-          const description = document.createElement('span');
-          description.className = 'mode-description';
-          description.textContent = mode.description;
-          copy.append(title, description);
-          const arrow = document.createElement('span');
-          arrow.className = 'mode-arrow';
-          arrow.setAttribute('aria-hidden', 'true');
-          arrow.textContent = '→';
-          button.append(icon, copy, arrow);
-          button.addEventListener('click', () => {
-            modeOptions.querySelectorAll('button').forEach(option => {
-              option.setAttribute('aria-pressed', String(option === button));
-            });
-            showSchedule(modeKey);
-          });
-          return button;
-        }));
+                const modeOptionsList = ['offline', 'online'];
+                modeOptions.replaceChildren(...modeOptionsList.map(modeKey => {
+                    const mode = classes[modeKey];
+                    const button = document.createElement('button');
+                    button.className = 'mode-button';
+                    button.type = 'button';
+                    button.dataset.mode = modeKey;
+                    button.setAttribute('aria-pressed', 'false');
+                    button.setAttribute('aria-controls', 'schedule-panel');
+                    const icon = document.createElement('span');
+                    icon.className = 'mode-icon';
+                    icon.append(createModeIcon(modeKey));
+                    const copy = document.createElement('span');
+                    copy.className = 'mode-copy';
+                    const title = document.createElement('span');
+                    title.className = 'mode-title';
+                    title.textContent = mode.title;
+                    const description = document.createElement('span');
+                    description.className = 'mode-description';
+                    description.textContent = mode.description;
+                    copy.append(title, description);
+                    const arrow = document.createElement('span');
+                    arrow.className = 'mode-arrow';
+                    arrow.setAttribute('aria-hidden', 'true');
+                    arrow.textContent = '→';
+                    button.append(icon, copy, arrow);
+                    button.addEventListener('click', () => {
+                        modeOptions.querySelectorAll('button').forEach(option => {
+                            option.setAttribute('aria-pressed', String(option === button));
+                        });
+                        showSchedule(modeKey);
+                    });
+                    return button;
+                }));
 
-        const showSchedule = modeKey => {
-          const mode = classes[modeKey];
-          scheduleHeading.textContent = selectedLevel + ' · ' + mode.title;
-          scheduleDescription.textContent = mode.description;
-          scheduleDetails.replaceChildren();
-          detailsLink.href = modeKey + '.html';
-          detailsLink.textContent = mode.buttonLabel;
-          setEnquiry(contact.whatsappMessage + ' (' + selectedLevel + ' ' + modeKey + ' classes)');
-          enquiryLink.textContent = 'Enquire about ' + selectedLevel + ' ' + modeKey + ' classes';
+                const showSchedule = modeKey => {
+                    const mode = classes[modeKey];
+                    scheduleHeading.textContent = selectedLevel + ' · ' + mode.title;
+                    scheduleDescription.textContent = mode.description;
+                    scheduleDetails.replaceChildren();
+                    detailsLink.href = modeKey + '.html';
+                    detailsLink.textContent = mode.buttonLabel;
+                    setEnquiry(contact.whatsappMessage + ' (' + selectedLevel + ' ' + modeKey + ' classes)');
+                    enquiryLink.textContent = 'Enquire about ' + selectedLevel + ' ' + modeKey + ' classes';
 
-          if (modeKey === 'online') {
-            const batches = mode.batches.filter(batch => batch.level === selectedLevel);
-            const list = document.createElement('ul');
-            list.className = 'batch-list';
-            batches.forEach(batch => {
-              const item = document.createElement('li');
-              item.className = 'batch-item';
-              const row = document.createElement('div');
-              row.className = 'batch-row';
-              const name = document.createElement('strong');
-              name.className = 'batch-name';
-              name.textContent = batch.name;
-              const sessions = document.createElement('div');
-              sessions.className = 'batch-sessions';
-              sessions.append(...batch.sessions.map(session => {
-                const line = document.createElement('div');
-                line.textContent = session.day + ' · ' + session.time;
-                return line;
-              }));
-              const amount = document.createElement('span');
-              amount.className = 'batch-amount';
-              amount.textContent = batch.amount;
-              row.append(name, sessions, amount);
-              item.append(row);
-              list.append(item);
-            });
-            scheduleDetails.append(list);
-          } else {
-            const schedule = document.createElement('p');
-            schedule.className = 'schedule-description';
-            schedule.textContent = mode.schedule;
-            const fee = mode.fees.find(item => item.level === selectedLevel);
-            const feeLine = document.createElement('div');
-            feeLine.className = 'fee-highlight';
-            const feeLabel = document.createElement('span');
-            feeLabel.textContent = selectedLevel + ' fee';
-            const feeAmount = document.createElement('strong');
-            feeAmount.className = 'fee-value';
-            feeAmount.textContent = fee.amount;
-            feeLine.append(feeLabel, feeAmount);
-            const feeNote = document.createElement('p');
-            feeNote.className = 'fee-note';
-            feeNote.textContent = mode.feeNote;
-            scheduleDetails.append(schedule, feeLine, feeNote);
-          }
+                    if (modeKey === 'online') {
+                        const batches = mode.batches.filter(batch => batch.level === selectedLevel);
+                        const list = document.createElement('ul');
+                        list.className = 'batch-list';
+                        batches.forEach(batch => {
+                            const item = document.createElement('li');
+                            item.className = 'batch-item';
+                            const row = document.createElement('div');
+                            row.className = 'batch-row';
+                            const name = document.createElement('strong');
+                            name.className = 'batch-name';
+                            name.textContent = batch.name;
+                            const sessions = document.createElement('div');
+                            sessions.className = 'batch-sessions';
+                            sessions.append(...batch.sessions.map(session => {
+                                const line = document.createElement('div');
+                                line.textContent = session.day + ' · ' + session.time;
+                                return line;
+                            }));
+                            const amount = document.createElement('span');
+                            amount.className = 'batch-amount';
+                            amount.textContent = batch.amount;
+                            row.append(name, sessions, amount);
+                            item.append(row);
+                            list.append(item);
+                        });
+                        scheduleDetails.append(list);
+                    } else {
+                        const schedule = document.createElement('p');
+                        schedule.className = 'schedule-description';
+                        schedule.textContent = mode.schedule;
+                        const fee = mode.fees.find(item => item.level === selectedLevel);
+                        const feeLine = document.createElement('div');
+                        feeLine.className = 'fee-highlight';
+                        const feeLabel = document.createElement('span');
+                        feeLabel.textContent = selectedLevel + ' fee';
+                        const feeAmount = document.createElement('strong');
+                        feeAmount.className = 'fee-value';
+                        feeAmount.textContent = fee.amount;
+                        feeLine.append(feeLabel, feeAmount);
+                        const feeNote = document.createElement('p');
+                        feeNote.className = 'fee-note';
+                        feeNote.textContent = mode.feeNote;
+                        scheduleDetails.append(schedule, feeLine, feeNote);
+                    }
 
-          reveal(schedulePanel);
-        };
+                    reveal(schedulePanel);
+                };
 
-        levelOptions.replaceChildren(...courses.levels.map(label => {
-          const button = document.createElement('button');
-          button.className = 'level-button';
-          button.type = 'button';
-          const courseIndex = courses.levels.indexOf(label);
-          button.setAttribute('aria-pressed', 'false');
-          button.setAttribute('aria-controls', 'class-options');
-          button.setAttribute('aria-expanded', 'false');
-          const icon = document.createElement('span');
-          icon.className = 'level-icon';
-          icon.setAttribute('aria-hidden', 'true');
-          icon.textContent = levelIcons[courseIndex] || '♟';
-          const copy = document.createElement('span');
-          copy.className = 'level-copy';
-          const index = document.createElement('span');
-          index.className = 'level-index';
-          index.textContent = 'Level ' + String(courseIndex + 1).padStart(2, '0');
-          const name = document.createElement('span');
-          name.className = 'level-name';
-          name.textContent = label;
-          const description = document.createElement('span');
-          description.className = 'level-description';
-          description.textContent = courses.levelDescriptions[courseIndex];
-          const state = document.createElement('span');
-          state.className = 'level-state';
-          state.textContent = 'View schedules';
-          copy.append(index, name, description, state);
-          const arrow = document.createElement('span');
-          arrow.className = 'level-arrow';
-          arrow.setAttribute('aria-hidden', 'true');
-          arrow.textContent = '→';
-          button.append(icon, copy, arrow);
-          button.addEventListener('click', () => {
-            selectedLevel = label;
-            levelOptions.querySelectorAll('button').forEach(option => {
-              option.setAttribute('aria-pressed', String(option === button));
-              option.setAttribute('aria-expanded', String(option === button));
-            });
-            modeOptions.querySelectorAll('button').forEach(option => option.setAttribute('aria-pressed', 'false'));
-            document.querySelector('#formats-heading').textContent = label + ' · Choose a class format';
-            formatStep.textContent = label + ' · Choose a class format';
-            setEnquiry(contact.whatsappMessage);
-            enquiryLink.textContent = contact.whatsappLabel;
-            reveal(formatSection);
-            schedulePanel.hidden = true;
-            modeOptions.querySelector('button').focus();
-          });
-          return button;
-        }));
-      } catch (error) {
-        console.error('Unable to load course details from content.json.', error);
-      }
-    })();
-  </script>
+                levelOptions.replaceChildren(...courses.levels.map(label => {
+                    const button = document.createElement('button');
+                    button.className = 'level-button';
+                    button.type = 'button';
+                    const courseIndex = courses.levels.indexOf(label);
+                    button.setAttribute('aria-pressed', 'false');
+                    button.setAttribute('aria-controls', 'class-options');
+                    button.setAttribute('aria-expanded', 'false');
+                    const icon = document.createElement('span');
+                    icon.className = 'level-icon';
+                    icon.setAttribute('aria-hidden', 'true');
+                    icon.textContent = levelIcons[courseIndex] || '♟';
+                    const copy = document.createElement('span');
+                    copy.className = 'level-copy';
+                    const index = document.createElement('span');
+                    index.className = 'level-index';
+                    index.textContent = 'Level ' + String(courseIndex + 1).padStart(2, '0');
+                    const name = document.createElement('span');
+                    name.className = 'level-name';
+                    name.textContent = label;
+                    const description = document.createElement('span');
+                    description.className = 'level-description';
+                    description.textContent = courses.levelDescriptions[courseIndex];
+                    const state = document.createElement('span');
+                    state.className = 'level-state';
+                    state.textContent = 'View schedules';
+                    copy.append(index, name, description, state);
+                    const arrow = document.createElement('span');
+                    arrow.className = 'level-arrow';
+                    arrow.setAttribute('aria-hidden', 'true');
+                    arrow.textContent = '→';
+                    button.append(icon, copy, arrow);
+                    button.addEventListener('click', () => {
+                        selectedLevel = label;
+                        levelOptions.querySelectorAll('button').forEach(option => {
+                            option.setAttribute('aria-pressed', String(option === button));
+                            option.setAttribute('aria-expanded', String(option === button));
+                        });
+                        modeOptions.querySelectorAll('button').forEach(option => option.setAttribute('aria-pressed', 'false'));
+                        document.querySelector('#formats-heading').textContent = label + ' · Choose a class format';
+                        formatStep.textContent = label + ' · Choose a class format';
+                        setEnquiry(contact.whatsappMessage);
+                        enquiryLink.textContent = contact.whatsappLabel;
+                        reveal(formatSection);
+                        schedulePanel.hidden = true;
+                        modeOptions.querySelector('button').focus();
+                    });
+                    return button;
+                }));
+            } catch (error) {
+                console.error('Unable to load course details from content.json.', error);
+            }
+        })();
+    </script>
 </body>
+
 </html>
